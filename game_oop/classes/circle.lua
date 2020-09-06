@@ -2,7 +2,7 @@ local Shape = require("classes.base.shape")
 local Circle = Shape:extend()
 
 function Circle:new(radius)
-	Circle.super.new(self)
+	Circle.super.new(self, "circle")
 	self.radius = radius
 end
 
@@ -27,6 +27,8 @@ function Circle:mousepressed(mx, my, mb)
 	if is_clicked then
 		self.is_clicked = not self.is_clicked
 	end
+
+	return self.is_clicked
 end
 
 function Circle:draw()

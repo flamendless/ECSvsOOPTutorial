@@ -4,6 +4,8 @@ local Shapes = {
 	Circle = require("classes.circle"),
 }
 local Spawner = require("classes.spawner")
+local Score = require("classes.score")
+local score = Score(2, 4, 8)
 
 local spawners = {}
 local shapes = {}
@@ -38,11 +40,34 @@ function love.update(dt)
 	for i, spawner in ipairs(spawners) do
 		spawner:update(dt)
 	end
+
+	for i, obj in ipairs(shapes) do
+		if obj:isClicked() then
+			score:update_clicked(obj)
+		end
+	end
+
+	--checking for destroyed shapes
+	for i = #shapes, 1, -1 do
+		local shape = shapes[i]
+
+		if shape:isDestroyed() then
+			table.remove(shapes, i)
+		end
+	end
 end
 
 function love.draw()
 	for i, obj in ipairs(shapes) do
 		obj:draw()
+	end
+
+	score:draw()
+end
+
+function love.mousepressed(mx, my, mb)
+	for i, obj in ipairs(shapes) do
+		obj:mousepressed(mx, my, mb)
 	end
 end
 

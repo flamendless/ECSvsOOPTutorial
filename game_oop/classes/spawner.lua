@@ -1,5 +1,5 @@
-local class = require("modules.classic")
-local Spawner = class:extend()
+local Class = require("modules.classic")
+local Spawner = Class:extend()
 
 function Spawner:new(spawn_time, spawn)
 	self.spawn_time = spawn_time

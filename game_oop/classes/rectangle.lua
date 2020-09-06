@@ -1,8 +1,8 @@
 local Shape = require("classes.base.shape")
 local Rectangle = Shape:extend()
 
-function Rectangle:new(width, height)
-	Rectangle.super.new(self)
+function Rectangle:new(width, height, shape_type)
+	Rectangle.super.new(self, shape_type or "rectangle")
 	self.width = width
 	self.height = height
 end
@@ -26,6 +26,8 @@ function Rectangle:mousepressed(mx, my, mb)
 	if is_clicked then
 		self.is_clicked = not self.is_clicked
 	end
+
+	return self.is_clicked
 end
 
 function Rectangle:draw()

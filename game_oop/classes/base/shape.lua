@@ -1,5 +1,5 @@
-local class = require("modules.classic")
-local Shape = class:extend()
+local Class = require("modules.classic")
+local Shape = Class:extend()
 
 local colors = {
 	{1, 0, 0}, --red
@@ -14,7 +14,10 @@ local function generate_random_color()
 	return {unpack(color)}
 end
 
-function Shape:new()
+function Shape:new(shape_type)
+	self.shape_type = shape_type
+	self.alive = true
+
 	local w, h = love.graphics.getDimensions()
 
 	self.x = love.math.random(96, w - 96)
@@ -37,6 +40,15 @@ function Shape:move(dt)
 
 	self.x = dx
 	self.y = dy
+end
+
+function Shape:getShapeType() return self.shape_type end
+function Shape:getColor() return self.color end
+function Shape:isDestroyed() return self.alive == false end
+function Shape:isClicked() return self.is_clicked end
+function Shape:destroy()
+	self.alive = false
+	self.is_clicked = false
 end
 
 return Shape

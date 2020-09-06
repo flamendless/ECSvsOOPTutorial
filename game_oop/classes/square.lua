@@ -2,7 +2,7 @@ local Shape = require("classes.rectangle")
 local Square = Shape:extend()
 
 function Square:new(size)
-	Square.super.new(self, size, size)
+	Square.super.new(self, size, size, "square")
 end
 
 function Square:update(dt)

@@ -3,6 +3,8 @@ local GameOverScreen = Scene:extend()
 
 function GameOverScreen:new(manager)
 	GameOverScreen.super.new(self, "game_screen", manager)
+
+	return self
 end
 
 function GameOverScreen:keypressed(key)

@@ -3,6 +3,8 @@ local PauseScreen = Scene:extend()
 
 function PauseScreen:new(manager)
 	PauseScreen.super.new(self, "pause_screen", manager)
+
+	return self
 end
 
 function PauseScreen:keypressed(key)
